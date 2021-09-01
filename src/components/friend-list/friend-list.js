@@ -1,42 +1,41 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import defaultAvatar from './friend-list';
 import styles from './friend-list.module.css';
 
-const FriendList = ({friends}) => {
-    return (
-        <ul className={styles.friend_list}>
-            {friends.map(({avatar, name, isOnline, id}) => {
-                const status = isOnline ? styles.isOnline : styles.isOffline;
-               
-                return(
-                
-                <li className={styles.item}
-                    key={id}
+const FriendList = ({ friends }) => {
+  return (
+    <ul className={styles.friend_list}>
+      {friends.map(({ avatar, name, isOnline, id }) => {
+        const status = isOnline ? styles.isOnline : styles.isOffline;
 
-                >   
-                    <span className={status}>{isOnline}</span>
-                    <img className={styles.avatar} src={avatar} alt="" width="48" />
-                    <p className={styles.name}>{name}</p>
-                </li>
-            )})}
-        </ul>
-    );
-}
+        return (
+          <li className={styles.item} key={id}>
+            <span className={status}>{isOnline}</span>
+            <img className={styles.avatar} src={avatar} alt="" width="48" />
+            <p className={styles.name}>{name}</p>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
 FriendList.defaultProps = {
-    friends: PropTypes.arrayOf(PropTypes.shape({
-        avatar: defaultAvatar,
-    })
-    ) 
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatar: defaultAvatar,
+    }),
+  ),
 };
 
 FriendList.propTypes = {
-    friends: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        avatar: PropTypes.string,
-    })
-    ).isRequired,
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      avatar: PropTypes.string,
+    }),
+  ).isRequired,
 };
-  
+
 export default FriendList;
